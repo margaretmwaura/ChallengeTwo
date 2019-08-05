@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "286032309964",
+    "firebase_url": "https://phaseonechallengetwo.firebaseio.com",
+    "project_id": "phaseonechallengetwo",
+    "storage_bucket": "phaseonechallengetwo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286032309964:android:1779f8d0b4f50daa",
+        "android_client_info": {
+          "package_name": "com.android.phaseonechallengetwo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "286032309964-8l686qp2jado5c7ld7h0qmu02cholk33.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.phaseonechallengetwo",
+            "certificate_hash": "2c766fd73f76a90a60d98c6fabf20e8e0020ed26"
+          }
+        },
+        {
+          "client_id": "286032309964-c98d8ah6pp2sf2224dn5sfos8l9jhq75.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCO73vUC6SUcSBkSlDd7oqwvvD6QgJXwQc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "286032309964-c98d8ah6pp2sf2224dn5sfos8l9jhq75.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
