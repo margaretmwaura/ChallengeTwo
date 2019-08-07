@@ -3,6 +3,7 @@
     package="com.android.phaseonechallengetwo">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EnterDetails"></activity>
+        <activity android:name=".DisplayDeals"></activity>
+        <activity android:name=".EnterDetails" />
         <activity
             android:name=".MainActivityTwo"
             android:label="@string/title_activity_main_two"

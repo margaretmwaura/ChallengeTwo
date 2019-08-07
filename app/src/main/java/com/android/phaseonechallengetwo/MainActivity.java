@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         signInWithEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MainActivityTwo.class);
+                Intent intent = new Intent(MainActivity.this,MainActivityTwo.class);
                 startActivity(intent);
             }
         });
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("Message","signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Intent addTaskIntent = new Intent(MainActivity.this, MainActivityTwo.class).putExtra("theUserId",Id);
+                            Intent addTaskIntent = new Intent(MainActivity.this, EnterDetails.class).putExtra("theUserId",Id);
                             startActivity(addTaskIntent);
 
                         } else {
