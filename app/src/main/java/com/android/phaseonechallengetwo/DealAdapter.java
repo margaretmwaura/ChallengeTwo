@@ -1,11 +1,15 @@
 package com.android.phaseonechallengetwo;
 
 import android.content.Context;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import org.w3c.dom.Text;
 
@@ -15,10 +19,16 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 public class DealAdapter extends RecyclerView.Adapter<DealAdapter.DealAdapterViewHolder>
 {
     private List<Deal> dealList = new ArrayList<>();
     private Context mContext;
+
+    public DealAdapter(Context mContext)
+    {
+        this.mContext = mContext;
+    }
 
     @NonNull
     @Override
@@ -39,6 +49,9 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.DealAdapterVie
         holder.area.setText(deal.getArea());
         holder.destination.setText(deal.getDestination());
         holder.amount.setText(String.valueOf(deal.getAmount()));
+
+            Glide.with(mContext).load(Uri.parse(deal.getUrl())).into(holder.imageView_deal);
+
     }
 
     @Override
@@ -58,6 +71,7 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.DealAdapterVie
         TextView amount;
         TextView destination;
         TextView area;
+        ImageView imageView_deal;
 
         public DealAdapterViewHolder(View itemView)
         {
@@ -65,6 +79,7 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.DealAdapterVie
             amount = (TextView) itemView.findViewById(R.id.textView_amount);
             destination = (TextView) itemView.findViewById(R.id.textView_destination);
             area = (TextView)itemView.findViewById(R.id.textView_area);
+            imageView_deal = (ImageView)itemView.findViewById(R.id.imageview_deal);
         }
     }
 }

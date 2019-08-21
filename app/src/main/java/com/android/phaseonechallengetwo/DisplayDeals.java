@@ -29,7 +29,7 @@ public class DisplayDeals extends AppCompatActivity {
         setContentView(R.layout.activity_display_deals);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview_deals);
-        dealAdapter = new DealAdapter();
+        dealAdapter = new DealAdapter(this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
 

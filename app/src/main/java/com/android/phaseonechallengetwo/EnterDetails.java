@@ -18,18 +18,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 public class EnterDetails extends AppCompatActivity {
 
     EditText areaTv, destiantionTv, amountTv;
-    String area , destination;
+    String area , destination,image;
     int amount ;
     Button selectImage;
     ImageView imageView;
+    Deal deal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,8 +84,7 @@ public class EnterDetails extends AppCompatActivity {
         area = areaTv.getText().toString();
         amount = Integer.parseInt(amountTv.getText().toString());
         destination = destiantionTv.getText().toString();
-
-        Deal deal = new Deal(area,amount,destination," ");
+        deal = new Deal(area,amount,destination,image);
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference().child("Database").child("Deals");
         databaseReference.push().setValue(deal).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -113,6 +118,39 @@ public class EnterDetails extends AppCompatActivity {
                 {
                     final Uri imageUri = data.getData();
                     imageView.setImageURI(imageUri);
+
+
+                    FirebaseStorage storage = FirebaseStorage.getInstance();
+                    StorageReference storageRef = storage.getReference().child("deals_pictures");
+                    final StorageReference imagesRef = storageRef.child(imageUri.getLastPathSegment());
+                    UploadTask uploadTask = imagesRef.putFile(imageUri);
+                    Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                        @Override
+                        public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                            if (!task.isSuccessful()) {
+                                throw task.getException();
+                            }
+
+                            // Continue with the task to get the download URL
+                            return imagesRef.getDownloadUrl();
+                        }
+                    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            if (task.isSuccessful())
+                            {
+                                Uri downloadUri = task.getResult();
+                                image = downloadUri.toString();
+                                Log.d("SelectedImage","This is the selected image " + image);
+
+                            } else
+                                {
+                                // Handle failures
+                                // ...
+                            }
+                        }
+                    });
+
 
                 }}}
                 catch (Exception e)
